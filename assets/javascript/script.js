@@ -30,7 +30,7 @@ const questions = [{
     },
 ]
 
-/* Getting elements from the dom */
+/* Getting elements from the DOM */
 let headerContainer = document.getElementById("header");
 let listContainer = document.getElementById("list");
 let submitBtn = document.getElementById("submit");
@@ -75,11 +75,13 @@ function showQuestion() {
     }
 }
 
+
+/* Function to check answer*/
 function checkAnswer(){
     /* Finding checked button */
     const checkedButton=listContainer.querySelector('input[type="radio"]:checked');
 
-    /*If button wasn't checked - escape function*/
+    /* If button wasn't checked - escape function */
     if(!checkedButton){
         return;
     }
@@ -87,11 +89,12 @@ function checkAnswer(){
     /* Get the number of user's answer */
     const userAnswer=parseInt(checkedButton.value);
 
-    /* Check answer */
+    /* Check answer and increment score */
     if (userAnswer===questions[questionIndex]["correct"]){
         score++;
     }
 
+    /* Taking action if it was the last question */
     if(questionIndex !== questions.length-1){
         questionIndex++;
         clearPage();
@@ -102,7 +105,10 @@ function checkAnswer(){
     }
 }
 
+
+/* Function to show results*/
 function showResult(){
+    /* Template of HTML structure of results */
     const resultTemplate=`<h2 class="title">%title%</h2>
     <h3 class="summary">%message%</h3>
     <p class="result">%result%</p>`;
@@ -110,6 +116,7 @@ function showResult(){
     let title;
     let message;
 
+    /* Cheking the score*/
     if (score===questions.length){
         title="Congratulations!";
         message="You answered every question right!";
@@ -118,15 +125,17 @@ function showResult(){
         message="You answered more than a half right!";
     } else {
         title="Could be better";
-        message="You answered less than a half right"
+        message="You answered less than a half right";
     }
 
     let result=`${score} out of ${questions.length}`;
 
+    /* Final message */
     const finalMessage=resultTemplate.replace('%title%', title).replace('%message%', message).replace('%result%', result);
 
     headerContainer.innerHTML=finalMessage;
 
+    /* Change submit to play again and reloads page on onclick*/
     submitBtn.innerText='Play Again';
     submitBtn.onclick=function(){
         window.location.reload();
