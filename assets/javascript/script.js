@@ -28,6 +28,31 @@ const questions = [{
         answer: ["19", "18", "20", "21"],
         correct: 1,
     },
+    {
+        question: "What is the name of the comic book series Joel collects for Ellie?",
+        answer: ["Savage Spacewars", "Peaceful Starlight", "Glorious Spacewars", "Savage Starlight"],
+        correct: 4,
+    },
+    {
+        question: "What is the name of Bill's partner?",
+        answer: ["Robert", "Steve", "Frank", "Peter"],
+        correct: 3,
+    },
+    {
+        question: "When Joel first meets Ellie, how long has she been infected for?",
+        answer: ["One month", "Two weeks", "Ten days", "Three weeks"],
+        correct: 4,
+    },
+    {
+        question: "What is the name of the high school you traverse through with Bill?",
+        answer: ["Franklin High School", "Lincoln High School", "Andrews High School", "Roosevelt High School"],
+        correct: 2,
+    },
+    {
+        question: "How old is Ellie when Joel first encounters her?",
+        answer: ["13", "14", "15", "16"],
+        correct: 2,
+    },
 ]
 
 /* Getting elements from the DOM */
@@ -60,8 +85,8 @@ function showQuestion() {
     questions[questionIndex]['answer'];
 
     /*Show a question*/
-    const headerTemplate = `<h2 class="title">%title%</h2>`;
-    const title = headerTemplate.replace('%title%', questions[questionIndex]['question'])
+    let headerTemplate = `<h2 class="title">%title%</h2>`;
+    let title = headerTemplate.replace('%title%', questions[questionIndex]['question']);
     headerContainer.innerHTML = title;
 
     /*Show answers*/
@@ -116,7 +141,8 @@ function showResult(){
     /* Template of HTML structure of results */
     const resultTemplate=`<h2 class="title">%title%</h2>
     <h3 class="summary">%message%</h3>
-    <p class="result">%result%</p>`;
+    <p class="result">%result%</p>
+    <button class="check">Show Answers</button>`;
 
     let title;
     let message;
@@ -146,3 +172,7 @@ function showResult(){
         window.location.reload();
     }
 }
+
+let showCorrect=document.getElementsByClassName("check");
+
+
