@@ -61,7 +61,6 @@ function showQuestion() {
     /*Show answers*/
     let answerNumber=1;
     for (item of questions[questionIndex]['answer']) {
-        console.log(answerNumber, item);
         const questionTemplate = `<li>
         <label>
             <input value="%number%" type="radio" class="answer" name="answer">
