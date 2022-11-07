@@ -30,6 +30,7 @@ const questions = [{
     },
 ]
 
+/* Getting elements from the dom */
 let headerContainer = document.getElementById("header");
 let listContainer = document.getElementById("list");
 let submitBtn = document.getElementById("submit");
@@ -45,16 +46,19 @@ function clearPage() {
 
 clearPage();
 showQuestion();
+submitBtn.onclick=checkAnswer;
 
+/*A function to show questions*/
 function showQuestion() {
     questions[questionIndex]['question'];
     questions[questionIndex]['answer'];
 
+    /*Show a question*/
     const headerTemplate = `<h2 class="title">%title%</h2>`;
     const title = headerTemplate.replace('%title%', questions[questionIndex]['question'])
-
     headerContainer.innerHTML = title;
 
+    /*Show answers*/
     for (item of questions[questionIndex]['answer']) {
         const questionTemplate = `<li>
         <label>
@@ -65,4 +69,11 @@ function showQuestion() {
         const answerText = questionTemplate.replace('%answer%', item);
         listContainer.innerHTML += answerText;
     }
+}
+
+function checkAnswer(){
+    console.log("checkanswer started");
+
+    /* Finding checked button */
+    const checkedButton=listContainer.querySelector('input[type="radio"]:checked');
 }
