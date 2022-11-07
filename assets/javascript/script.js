@@ -34,10 +34,16 @@ const questions = [{
 let headerContainer = document.getElementById("header");
 let listContainer = document.getElementById("list");
 let submitBtn = document.getElementById("submit");
-
+let startBtn=document.getElementById("start");
+let quiz=document.getElementById("quiz");
 
 let score = 0;
 let questionIndex = 0;
+
+startBtn.onclick=function(){
+    startBtn.classList.add("hidden");
+    quiz.classList.remove("hidden");
+}
 
 function clearPage() {
     headerContainer.innerHTML = "";
