@@ -59,21 +59,76 @@ function showQuestion() {
     headerContainer.innerHTML = title;
 
     /*Show answers*/
+    let answerNumber=1;
     for (item of questions[questionIndex]['answer']) {
+        console.log(answerNumber, item);
         const questionTemplate = `<li>
         <label>
-            <input type="radio" class="answer" name="answer">
+            <input value="%number%" type="radio" class="answer" name="answer">
             <span>%answer%</span>
         </label>
         </li>`
-        const answerText = questionTemplate.replace('%answer%', item);
+        
+        let answerText = questionTemplate.replace('%answer%', item).replace("%number%", answerNumber);
         listContainer.innerHTML += answerText;
+        answerNumber++;
     }
 }
 
 function checkAnswer(){
-    console.log("checkanswer started");
-
     /* Finding checked button */
     const checkedButton=listContainer.querySelector('input[type="radio"]:checked');
+
+    /*If button wasn't checked - escape function*/
+    if(!checkedButton){
+        return;
+    }
+
+    /* Get the number of user's answer */
+    const userAnswer=parseInt(checkedButton.value);
+
+    /* Check answer */
+    if (userAnswer===questions[questionIndex]["correct"]){
+        score++;
+    }
+
+    if(questionIndex !== questions.length-1){
+        questionIndex++;
+        clearPage();
+        showQuestion();
+    } else {
+        clearPage();
+        showResult();
+    }
+}
+
+function showResult(){
+    const resultTemplate=`<h2 class="title">%title%</h2>
+    <h3 class="summary">%message%</h3>
+    <p class="result">%result%</p>`;
+
+    let title;
+    let message;
+
+    if (score===questions.length){
+        title="Congratulations!";
+        message="You answered every question right!";
+    } else if((score*100)/questions.length>=50){
+        title="Not bad!";
+        message="You answered more than a half right!";
+    } else {
+        title="Could be better";
+        message="You answered less than a half right"
+    }
+
+    let result=`${score} out of ${questions.length}`;
+
+    const finalMessage=resultTemplate.replace('%title%', title).replace('%message%', message).replace('%result%', result);
+
+    headerContainer.innerHTML=finalMessage;
+
+    submitBtn.innerText='Play Again';
+    submitBtn.onclick=function(){
+        window.location.reload();
+    }
 }
