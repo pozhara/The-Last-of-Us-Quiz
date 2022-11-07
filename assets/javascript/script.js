@@ -44,3 +44,25 @@ function clearPage() {
 }
 
 clearPage();
+showQuestion();
+
+function showQuestion() {
+    questions[questionIndex]['question'];
+    questions[questionIndex]['answer'];
+
+    const headerTemplate = `<h2 class="title">%title%</h2>`;
+    const title = headerTemplate.replace('%title%', questions[questionIndex]['question'])
+
+    headerContainer.innerHTML = title;
+
+    for (item of questions[questionIndex]['answer']) {
+        const questionTemplate = `<li>
+        <label>
+            <input type="radio" class="answer" name="answer">
+            <span>%answer%</span>
+        </label>
+        </li>`
+        const answerText = questionTemplate.replace('%answer%', item);
+        listContainer.innerHTML += answerText;
+    }
+}
