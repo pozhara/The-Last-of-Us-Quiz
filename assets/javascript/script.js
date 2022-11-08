@@ -103,6 +103,8 @@ function showQuestion() {
         listContainer.innerHTML += answerText;
         answerNumber++;
     }
+    let progress=`<p>${questionIndex+1} out of ${questions.length}</p>`
+    document.getElementById("progress").innerHTML=progress;
 }
 
 
@@ -133,8 +135,6 @@ function checkAnswer() {
         clearPage();
         showResult();
     }
-    let progress=`<p>${questionIndex} out of ${questions.length}</p>`
-    document.getElementById("progress").innerHTML=progress;
 }
 
 
