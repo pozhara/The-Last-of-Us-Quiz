@@ -5,8 +5,8 @@ const questions = [{
     },
     {
         question: "Around how old is Joel in The Last of Us Part II?",
-        answer: ["50s", "40s", "60s", "70s"],
-        correct: 1,
+        answer: ["40s", "50s", "60s", "70s"],
+        correct: 2,
     },
     {
         question: "What is Manny's rank in the WLF?",
@@ -25,8 +25,8 @@ const questions = [{
     },
     {
         question: "How old is Ellie at the start of the second game?",
-        answer: ["19", "18", "20", "21"],
-        correct: 1,
+        answer: ["18", "19", "20", "21"],
+        correct: 2,
     },
     {
         question: "What is the name of the comic book series Joel collects for Ellie?",
@@ -59,13 +59,13 @@ const questions = [{
 let headerContainer = document.getElementById("header");
 let listContainer = document.getElementById("list");
 let submitBtn = document.getElementById("submit");
-let startBtn=document.getElementById("start");
-let quiz=document.getElementById("quiz");
+let startBtn = document.getElementById("start");
+let quiz = document.getElementById("quiz");
 
 let score = 0;
 let questionIndex = 0;
 
-startBtn.onclick=function(){
+startBtn.onclick = function () {
     startBtn.classList.add("hidden");
     quiz.classList.remove("hidden");
 }
@@ -77,7 +77,7 @@ function clearPage() {
 
 clearPage();
 showQuestion();
-submitBtn.onclick=checkAnswer;
+submitBtn.onclick = checkAnswer;
 
 /*A function to show questions*/
 function showQuestion() {
@@ -90,7 +90,7 @@ function showQuestion() {
     headerContainer.innerHTML = title;
 
     /*Show answers*/
-    let answerNumber=1;
+    let answerNumber = 1;
     for (item of questions[questionIndex]['answer']) {
         const questionTemplate = `<li>
         <label>
@@ -98,7 +98,7 @@ function showQuestion() {
             <span>%answer%</span>
         </label>
         </li>`
-        
+
         let answerText = questionTemplate.replace('%answer%', item).replace("%number%", answerNumber);
         listContainer.innerHTML += answerText;
         answerNumber++;
@@ -107,25 +107,25 @@ function showQuestion() {
 
 
 /* Function to check answer*/
-function checkAnswer(){
+function checkAnswer() {
     /* Finding checked button */
-    const checkedButton=listContainer.querySelector('input[type="radio"]:checked');
+    const checkedButton = listContainer.querySelector('input[type="radio"]:checked');
 
     /* If button wasn't checked - escape function */
-    if(!checkedButton){
+    if (!checkedButton) {
         return;
     }
 
     /* Get the number of user's answer */
-    const userAnswer=parseInt(checkedButton.value);
+    const userAnswer = parseInt(checkedButton.value);
 
     /* Check answer and increment score */
-    if (userAnswer===questions[questionIndex]["correct"]){
+    if (userAnswer === questions[questionIndex]["correct"]) {
         score++;
     }
 
     /* Taking action if it was the last question */
-    if(questionIndex !== questions.length-1){
+    if (questionIndex !== questions.length - 1) {
         questionIndex++;
         clearPage();
         showQuestion();
@@ -133,13 +133,16 @@ function checkAnswer(){
         clearPage();
         showResult();
     }
+    let progress=`<p>${questionIndex} out of ${questions.length}</p>`
+    document.getElementById("progress").innerHTML=progress;
 }
 
 
 /* Function to show results*/
-function showResult(){
+function showResult() {
+    document.getElementById("progress").classList.add("hidden");
     /* Template of HTML structure of results */
-    const resultTemplate=`<h2 class="title">%title%</h2>
+    const resultTemplate = `<h2 class="title">%title%</h2>
     <h3 class="summary">%message%</h3>
     <p class="result">%result%</p>
     <button class="check">Show Answers</button>`;
@@ -148,31 +151,33 @@ function showResult(){
     let message;
 
     /* Cheking the score*/
-    if (score===questions.length){
-        title="Congratulations!";
-        message="You answered every question right!";
-    } else if((score*100)/questions.length>=50){
-        title="Not bad!";
-        message="You answered more than a half right!";
+    if (score === questions.length) {
+        title = "Congratulations!";
+        message = "You answered every question right!";
+    } else if ((score * 100) / questions.length >= 50) {
+        title = "Not bad!";
+        message = "You answered more than a half right!";
     } else {
-        title="Could be better";
-        message="You answered less than a half right";
+        title = "Could be better";
+        message = "You answered less than a half right";
     }
 
-    let result=`${score} out of ${questions.length}`;
+    let result = `${score} out of ${questions.length}`;
 
     /* Final message */
-    const finalMessage=resultTemplate.replace('%title%', title).replace('%message%', message).replace('%result%', result);
+    const finalMessage = resultTemplate.replace('%title%', title).replace('%message%', message).replace('%result%', result);
 
-    headerContainer.innerHTML=finalMessage;
+    headerContainer.innerHTML = finalMessage;
 
     /* Change submit to play again and reloads page on onclick*/
-    submitBtn.innerText='Play Again';
-    submitBtn.onclick=function(){
+    submitBtn.innerText = 'Play Again';
+    submitBtn.onclick = function () {
         window.location.reload();
     }
+    
+    let correctAnswer=document.getElementById("correct-answers");
+    document.querySelector(".check").onclick=function(){
+        quiz.classList.add("hidden");
+        correctAnswer.classList.remove("hidden");
+    }
 }
-
-let showCorrect=document.getElementsByClassName("check");
-
-

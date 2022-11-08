@@ -105,3 +105,30 @@ li:hover{
 .hidden{
     display:none;
 }
+
+#correct-answers{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:420px;
+    border-radius:10px;
+    background-color:rgb(1, 45, 1, 0.6);
+    user-select:none;
+    text-align:center;
+}
+
+#correct-answers h1{
+    margin-bottom:7px;
+}
+
+#correct-answers h3{
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+#progress{
+    float:left;
+    margin-bottom:15px;
+    margin-left:10px;
+}
