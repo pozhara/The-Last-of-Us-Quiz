@@ -127,16 +127,21 @@ li:hover{
     margin-top: 5px;
 }
 
+#correct-answers h3:last-child{
+    margin-bottom:7px;
+}
+
 #progress{
     float:left;
     margin-bottom:15px;
     margin-left:10px;
 }
 
-.red{
-    color:red;
-}
-
-.green{
-    color:green;
+@media screen and (max-width:500px){
+    #quiz{
+        width:300px;
+    }
+    #correct-answers{
+        width:300px;
+    }
 }
