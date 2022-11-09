@@ -1,108 +1,71 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# The Last of Us Quiz
 
-Welcome pozhara,
+![My site on different screens](assets/images/screens.jpg)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+The Last of Us Quiz is a site that gives fans an opportunity to test their knowledge of the games.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+# Existing features
 
-## Gitpod Reminders
+## Start Quiz
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Includes a start quiz button to not throw people directly to the quiz.
 
-`python3 -m http.server`
+![Start Quiz page](assets/images/startquiz.jpg)
 
-A blue button should appear to click: _Make Public_,
+## The quiz itself
+Includes questions, answers, submit button and progress indicator so people wouldn't guess how much more questions they have to answer.
+![Image of the first question in the quiz](assets/images/question.jpg)
 
-Another blue button should appear to click: _Open Browser_.
+## Results
+Includes a message of people's performance, how many question they answered correctly, a button to play again that refreshes the page and a button to see correct answers.
+![Image of result page](assets/images/result.jpg)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Correct answers
+Includes correct answers and a button to play again that refreshes the page.
+![Image of correct answers page](assets/images/correctanswers.jpg)
 
-A blue button should appear to click: _Make Public_,
+# Testing
+The site looks good on different screens. Image isn't distorted. Javascript code works as expected to make the quiz playable and responsive.
 
-Another blue button should appear to click: _Open Browser_.
+-HTML: No errors were returned when passing through the official W3C validator
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+-CSS: No errors were found when passing through the official (Jigsaw) validator
 
-To log into the Heroku toolbelt CLI:
+-JS: No significant errors were found when passing through a JavaScript validator
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+![Image of errors](assets/images/errors.jpg)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+# Deployment
 
-------
+The site was deployed to GitHub pages. The steps to deploy are as follows:
 
-## Release History
+-In the GitHub repository, navigate to the Settings tab
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+-From the source section drop-down menu, select the Master Branch
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+-Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+The live link can be found here - https://pozhara.github.io/The-Last-of-Us-Quiz/
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+# Credits
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+## Content
+Questions and answers for the quiz are from two webpages: useapotion and pushsquare (url: https://www.useapotion.com/2022/08/quiz-how-well-do-you-know-the-last-of-us/ , https://www.pushsquare.com/quizzes/how-well-do-you-know-the-last-of-us)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+## Media
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+The background image was taken from Alpha Coders website (url: https://wall.alphacoders.com/by_sub_category.php?id=251477&name=The+Last+of+Us+Part+II+Wallpapers)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Code
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+To make a quiz on my own I had to watch walkthrough videos. Like:
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+Web Dev Simplified (url:https://www.youtube.com/watch?v=riDzcEQbX6k&t=1435s)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+Keep coding (url:https://www.youtube.com/watch?v=MxrGPP4F8Sc&t=2700s)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+Brian design (url:https://www.youtube.com/watch?v=f4fB9Xg2JEY&t=2423s)
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+Keith Paterson (url:https://www.youtube.com/watch?v=79WRPIknVHs&t=2697s)
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+The template way of writing a quiz in JavaScript was taken from Просто: разработка (url:https://www.youtube.com/watch?v=kl4lJ3-qt6k)
