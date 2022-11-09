@@ -180,4 +180,9 @@ function showResult() {
         quiz.classList.add("hidden");
         correctAnswer.classList.remove("hidden");
     }
+
+    let playAgain=document.querySelector(".play-again");
+    playAgain.onclick=function(){
+        window.location.reload();
+    }
 }
