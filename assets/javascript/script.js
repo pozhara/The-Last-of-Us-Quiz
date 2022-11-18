@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const questions = [{
     question: "What is the name of Ellie's mom?",
     answer: ["Jessica", "Monica", "Anna", "Tess"],
@@ -68,6 +70,7 @@ let questionIndex = 0;
 startBtn.onclick = function () {
 startBtn.classList.add("hidden");
 quiz.classList.remove("hidden");
+document.getElementById("description").classList.add("hidden");
 };
 
 function clearPage() {
@@ -81,9 +84,6 @@ submitBtn.onclick = checkAnswer;
 
 /*A function to show questions*/
 function showQuestion() {
-questions[questionIndex].question;
-questions[questionIndex].answer;
-
 /*Show a question*/
 let headerTemplate = `<h2 class="title">%title%</h2>`;
 let title = headerTemplate.replace('%title%', questions[questionIndex].question);
@@ -105,6 +105,9 @@ for (var item of questions[questionIndex].answer) {
 }
 let progress=`<p>${questionIndex+1} out of ${questions.length}</p>`;
 document.getElementById("progress").innerHTML=progress;
+
+let scoreBoard=`<p>Score: ${score} out of ${questions.length}</p>`;
+document.getElementById("score").innerHTML=scoreBoard;
 }
 
 

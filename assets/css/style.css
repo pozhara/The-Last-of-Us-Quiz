@@ -26,6 +26,12 @@ html{
     cursor:pointer;
 }
 
+#description{
+    margin-top:10px;
+    margin-bottom:10px;
+    text-align:center;
+}
+
 #quiz{
     position:absolute;
     top:50%;
@@ -71,6 +77,11 @@ li:hover{
 
 #submit:hover{
     background-color:rgb(181, 110, 24);
+}
+
+#score{
+    margin-bottom:0px;
+    text-align:center
 }
 
 .check{
