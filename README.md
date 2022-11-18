@@ -4,6 +4,10 @@
 
 The Last of Us Quiz is a site that gives fans an opportunity to test their knowledge of the games.
 
+The live link can be found here - https://pozhara.github.io/The-Last-of-Us-Quiz/
+
+Cloned link of github repository - https://github.com/pozhara/The-Last-of-Us-Quiz.git
+
 # Existing features
 
 ## Start Quiz
@@ -46,6 +50,8 @@ The site was deployed to GitHub pages. The steps to deploy are as follows:
 -Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment
 
 The live link can be found here - https://pozhara.github.io/The-Last-of-Us-Quiz/
+
+Cloned link of github repository - https://github.com/pozhara/The-Last-of-Us-Quiz.git
 
 # Credits
 
