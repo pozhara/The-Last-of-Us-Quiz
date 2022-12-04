@@ -23,60 +23,60 @@ function shuffle(answer) {
 
 /*Questions and answers*/
 const questions = [{
-        question: "What is the name of Ellie's mom?",
-        answer: ["Jessica", "Monica", "Anna", "Tess"],
-        correct: "Anna",
-    },
-    {
-        question: "Around how old is Joel in The Last of Us Part II?",
-        answer: ["40s", "50s", "60s", "70s"],
-        correct: "50s",
-    },
-    {
-        question: "What is Manny's rank in the WLF?",
-        answer: ["Sergeant", "Captain", "Lieutenant", "Corporal"],
-        correct: "Lieutenant",
-    },
-    {
-        question: "What item does Ellie keep of Sam's that can be seen in her room at the start of The Last of Us Part II?",
-        answer: ["PS3", "Toy robot", "Cassette player", "Animals of the Past book"],
-        correct: "Toy robot",
-    },
-    {
-        question: "Which game does NOT get referenced in The Last of US Part II?",
-        answer: ["Deus Ex", "God of War", "Jak and Daxter", "Crash Bandicoot"],
-        correct: "God of War",
-    },
-    {
-        question: "How old is Ellie at the start of the second game?",
-        answer: ["18", "19", "20", "21"],
-        correct: "19",
-    },
-    {
-        question: "What is the name of the comic book series Joel collects for Ellie?",
-        answer: ["Savage Spacewars", "Peaceful Starlight", "Glorious Spacewars", "Savage Starlight"],
-        correct: "Savage Starlight",
-    },
-    {
-        question: "What is the name of Bill's partner?",
-        answer: ["Robert", "Steve", "Frank", "Peter"],
-        correct: "Frank",
-    },
-    {
-        question: "When Joel first meets Ellie, how long has she been infected for?",
-        answer: ["One month", "Two weeks", "Ten days", "Three weeks"],
-        correct: "Three weeks",
-    },
-    {
-        question: "What is the name of the high school you traverse through with Bill?",
-        answer: ["Franklin High School", "Lincoln High School", "Andrews High School", "Roosevelt High School"],
-        correct: "Lincoln High School",
-    },
-    {
-        question: "How old is Ellie when Joel first encounters her?",
-        answer: ["13", "14", "15", "16"],
-        correct: "14",
-    },
+    question: "What is the name of Ellie's mom?",
+    answer: ["Jessica", "Monica", "Anna", "Tess"],
+    correct: "Anna",
+},
+{
+    question: "Around how old is Joel in The Last of Us Part II?",
+    answer: ["40s", "50s", "60s", "70s"],
+    correct: "50s",
+},
+{
+    question: "What is Manny's rank in the WLF?",
+    answer: ["Sergeant", "Captain", "Lieutenant", "Corporal"],
+    correct: "Lieutenant",
+},
+{
+    question: "What item does Ellie keep of Sam's that can be seen in her room at the start of The Last of Us Part II?",
+    answer: ["PS3", "Toy robot", "Cassette player", "Animals of the Past book"],
+    correct: "Toy robot",
+},
+{
+    question: "Which game does NOT get referenced in The Last of US Part II?",
+    answer: ["Deus Ex", "God of War", "Jak and Daxter", "Crash Bandicoot"],
+    correct: "God of War",
+},
+{
+    question: "How old is Ellie at the start of the second game?",
+    answer: ["18", "19", "20", "21"],
+    correct: "19",
+},
+{
+    question: "What is the name of the comic book series Joel collects for Ellie?",
+    answer: ["Savage Spacewars", "Peaceful Starlight", "Glorious Spacewars", "Savage Starlight"],
+    correct: "Savage Starlight",
+},
+{
+    question: "What is the name of Bill's partner?",
+    answer: ["Robert", "Steve", "Frank", "Peter"],
+    correct: "Frank",
+},
+{
+    question: "When Joel first meets Ellie, how long has she been infected for?",
+    answer: ["One month", "Two weeks", "Ten days", "Three weeks"],
+    correct: "Three weeks",
+},
+{
+    question: "What is the name of the high school you traverse through with Bill?",
+    answer: ["Franklin High School", "Lincoln High School", "Andrews High School", "Roosevelt High School"],
+    correct: "Lincoln High School",
+},
+{
+    question: "How old is Ellie when Joel first encounters her?",
+    answer: ["13", "14", "15", "16"],
+    correct: "14",
+},
 ];
 
 /* Getting elements from the DOM */
@@ -86,8 +86,8 @@ let submitBtn = document.getElementById("submit");
 let startBtn = document.getElementById("start");
 let quiz = document.getElementById("quiz");
 
-let score = 0;
 let questionIndex = 0;
+let score = 0;
 
 /*Show quiz when "Start" button is clicked*/
 startBtn.onclick = function () {
@@ -105,7 +105,6 @@ clearPage();
 showQuestion();
 submitBtn.onclick = checkAnswer;
 
-/*A function to show questions*/
 function showQuestion() {
     /*Show a question*/
     let headerTemplate = `<h2 class="title">%title%</h2>`;
@@ -134,10 +133,7 @@ function showQuestion() {
     document.getElementById("score").innerHTML = scoreBoard;
 
 }
-    
 
-
-/* Function to check answer*/
 /* Function to check answer*/
 function checkAnswer() {
     /* Finding checked button */
@@ -169,9 +165,9 @@ function checkAnswer() {
 
 
 /* Function to show results*/
-/* Function to show results*/
 function showResult() {
     document.getElementById("progress").classList.add("hidden");
+    document.getElementById("score").classList.add("hidden");
     /* Template of HTML structure of results */
     const resultTemplate = `<h2 class="title">%title%</h2>
 <h3 class="summary">%message%</h3>
@@ -213,7 +209,7 @@ function showResult() {
         correctAnswer.classList.remove("hidden");
 
         /*Showing all previous scores */
-        const lastScore = localStorage.getItem("latestScore") || [];
+        const lastScore = localStorage.getItem("latestScore") || "";
 
         const scoreDetail = lastScore.split(',');
 
@@ -227,7 +223,7 @@ function showResult() {
             userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`
         });
 
-        let userScoreBoard = document.getElementById("user-score");
+        let userScoreBoard = document.querySelector(".user-score");
 
         userScoreBoard.innerHTML = userScoreTemplate;
     };
