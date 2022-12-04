@@ -3,57 +3,57 @@
 const questions = [{
         question: "What is the name of Ellie's mom?",
         answer: ["Jessica", "Monica", "Anna", "Tess"],
-        correct: 3,
+        correct: "3",
     },
     {
         question: "Around how old is Joel in The Last of Us Part II?",
         answer: ["40s", "50s", "60s", "70s"],
-        correct: 2,
+        correct: "2",
     },
     {
         question: "What is Manny's rank in the WLF?",
         answer: ["Sergeant", "Captain", "Lieutenant", "Corporal"],
-        correct: 3,
+        correct: "3",
     },
     {
         question: "What item does Ellie keep of Sam's that can be seen in her room at the start of The Last of Us Part II?",
         answer: ["PS3", "Toy robot", "Cassette player", "Animals of the Past book"],
-        correct: 2,
+        correct: "2",
     },
     {
         question: "Which game does NOT get referenced in The Last of US Part II?",
         answer: ["Deus Ex", "God of War", "Jak and Daxter", "Crash Bandicoot"],
-        correct: 2,
+        correct: "2",
     },
     {
         question: "How old is Ellie at the start of the second game?",
         answer: ["18", "19", "20", "21"],
-        correct: 2,
+        correct: "2",
     },
     {
         question: "What is the name of the comic book series Joel collects for Ellie?",
         answer: ["Savage Spacewars", "Peaceful Starlight", "Glorious Spacewars", "Savage Starlight"],
-        correct: 4,
+        correct: "4",
     },
     {
         question: "What is the name of Bill's partner?",
         answer: ["Robert", "Steve", "Frank", "Peter"],
-        correct: 3,
+        correct: "3",
     },
     {
         question: "When Joel first meets Ellie, how long has she been infected for?",
         answer: ["One month", "Two weeks", "Ten days", "Three weeks"],
-        correct: 4,
+        correct: "4",
     },
     {
         question: "What is the name of the high school you traverse through with Bill?",
         answer: ["Franklin High School", "Lincoln High School", "Andrews High School", "Roosevelt High School"],
-        correct: 2,
+        correct: "2",
     },
     {
         question: "How old is Ellie when Joel first encounters her?",
         answer: ["13", "14", "15", "16"],
-        correct: 2,
+        correct: "2",
     },
 ];
 
@@ -90,36 +90,36 @@ function showQuestion() {
     headerContainer.innerHTML = title;
 
     /*Show answers*/
-    let answerNumber = 1;
-    for (var item of questions[questionIndex].answer) {
-        const questionTemplate = `<li>
-        <label>
-           <input value="%number%" type="radio" class="answer" name="answer">
-           <span>%answer%</span>
-        </label>
-        </li>`;
+    let arrayCurrentIndex = [];
 
-        let answers=questions[questionIndex].answer;
-        function shuffle(answers) {
-            let currentIndex = answers.length,  randomIndex;
-            while (currentIndex != 0) {
-              randomIndex = Math.floor(Math.random() * currentIndex);
-              currentIndex--;
-              [answers[currentIndex], answers[randomIndex]] = [
-                answers[randomIndex], answers[currentIndex]];
-            }
-          
-            return answers;
-          }
-          
-          shuffle(answers);
+for (let index = 0; index < questions[questionIndex].answer.length; index++) {
+    arrayCurrentIndex.push(index);
+}
 
-        let i=0;
-        let answerText = questionTemplate.replace('%answer%', answers[i]).replace("%number%", answerNumber);
+/*Show answers*/
+let answerNumber = 1;
+for (var item of questions[questionIndex].answer) {
+    const questionTemplate = `<li>
+    <label>
+        <input value="%number%" type="radio" class="answer" name="answer">
+        <span>%answer%</span>
+    </label>
+    </li>`;
+
     
-        listContainer.innerHTML += answerText;
-        answerNumber++;
-    }
+    let answers=questions[questionIndex].answer;
+
+    randomIndex = arrayCurrentIndex[Math.floor(Math.random() * arrayCurrentIndex.length)];
+
+    // Remove use number (randomIndex) from arrayCurrentIndex
+    let indexToRemove = arrayCurrentIndex.indexOf(randomIndex);
+    arrayCurrentIndex.splice(indexToRemove, 1);
+            
+    let answerText = questionTemplate.replace('%answer%', answers[randomIndex]).replace("%number%", answerNumber);
+
+    listContainer.innerHTML += answerText;
+    answerNumber++;
+}
     let progress = `<p>${questionIndex+1} out of ${questions.length}</p>`;
     document.getElementById("progress").innerHTML = progress;
 
@@ -142,7 +142,7 @@ function checkAnswer() {
     const userAnswer = parseInt(checkedButton.value);
 
     /* Check answer and increment score */
-    if (userAnswer === questions[questionIndex].correct) {
+    if (userAnswer == questions[questionIndex].correct) {
         score++;
     }
 
