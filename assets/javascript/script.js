@@ -1,59 +1,81 @@
 /*jshint esversion: 6 */
 
+/*Function to shuffle answers*/
+function shuffle(answer) {
+    let currentIndex = answer.length,
+        randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [answer[currentIndex], answer[randomIndex]] = [
+            answer[randomIndex], answer[currentIndex]
+        ];
+    }
+
+    return answer;
+}
+
+/*Questions and answers*/
 const questions = [{
         question: "What is the name of Ellie's mom?",
         answer: ["Jessica", "Monica", "Anna", "Tess"],
-        correct: "3",
+        correct: "Anna",
     },
     {
         question: "Around how old is Joel in The Last of Us Part II?",
         answer: ["40s", "50s", "60s", "70s"],
-        correct: "2",
+        correct: "50s",
     },
     {
         question: "What is Manny's rank in the WLF?",
         answer: ["Sergeant", "Captain", "Lieutenant", "Corporal"],
-        correct: "3",
+        correct: "Lieutenant",
     },
     {
         question: "What item does Ellie keep of Sam's that can be seen in her room at the start of The Last of Us Part II?",
         answer: ["PS3", "Toy robot", "Cassette player", "Animals of the Past book"],
-        correct: "2",
+        correct: "Toy robot",
     },
     {
         question: "Which game does NOT get referenced in The Last of US Part II?",
         answer: ["Deus Ex", "God of War", "Jak and Daxter", "Crash Bandicoot"],
-        correct: "2",
+        correct: "God of War",
     },
     {
         question: "How old is Ellie at the start of the second game?",
         answer: ["18", "19", "20", "21"],
-        correct: "2",
+        correct: "19",
     },
     {
         question: "What is the name of the comic book series Joel collects for Ellie?",
         answer: ["Savage Spacewars", "Peaceful Starlight", "Glorious Spacewars", "Savage Starlight"],
-        correct: "4",
+        correct: "Savage Starlight",
     },
     {
         question: "What is the name of Bill's partner?",
         answer: ["Robert", "Steve", "Frank", "Peter"],
-        correct: "3",
+        correct: "Frank",
     },
     {
         question: "When Joel first meets Ellie, how long has she been infected for?",
         answer: ["One month", "Two weeks", "Ten days", "Three weeks"],
-        correct: "4",
+        correct: "Three weeks",
     },
     {
         question: "What is the name of the high school you traverse through with Bill?",
         answer: ["Franklin High School", "Lincoln High School", "Andrews High School", "Roosevelt High School"],
-        correct: "2",
+        correct: "Lincoln High School",
     },
     {
         question: "How old is Ellie when Joel first encounters her?",
         answer: ["13", "14", "15", "16"],
-        correct: "2",
+        correct: "14",
     },
 ];
 
@@ -67,6 +89,7 @@ let quiz = document.getElementById("quiz");
 let score = 0;
 let questionIndex = 0;
 
+/*Show quiz when "Start" button is clicked*/
 startBtn.onclick = function () {
     startBtn.classList.add("hidden");
     quiz.classList.remove("hidden");
@@ -89,45 +112,32 @@ function showQuestion() {
     let title = headerTemplate.replace('%title%', questions[questionIndex].question);
     headerContainer.innerHTML = title;
 
+    headerContainer.innerHTML = `<h2 class="title">${questions[questionIndex].question}</h2>`;
+
     /*Show answers*/
-    let arrayCurrentIndex = [];
+    const lis = questions[questionIndex].answer.map((answer, index) =>
+        `<li>
+          <label>
+             <input value="`+ questions[questionIndex].answer[index] + `" type="radio" class="answer" name="answer">
+             <span>${answer}</span>
+          </label>
+         </li>`);
 
-for (let index = 0; index < questions[questionIndex].answer.length; index++) {
-    arrayCurrentIndex.push(index);
-}
+    listContainer.innerHTML = shuffle(lis).join('');
 
-/*Show answers*/
-let answerNumber = 1;
-for (var item of questions[questionIndex].answer) {
-    const questionTemplate = `<li>
-    <label>
-        <input value="%number%" type="radio" class="answer" name="answer">
-        <span>%answer%</span>
-    </label>
-    </li>`;
-
-    
-    let answers=questions[questionIndex].answer;
-
-    randomIndex = arrayCurrentIndex[Math.floor(Math.random() * arrayCurrentIndex.length)];
-
-    // Remove use number (randomIndex) from arrayCurrentIndex
-    let indexToRemove = arrayCurrentIndex.indexOf(randomIndex);
-    arrayCurrentIndex.splice(indexToRemove, 1);
-            
-    let answerText = questionTemplate.replace('%answer%', answers[randomIndex]).replace("%number%", answerNumber);
-
-    listContainer.innerHTML += answerText;
-    answerNumber++;
-}
-    let progress = `<p>${questionIndex+1} out of ${questions.length}</p>`;
+    /*Show progress*/
+    let progress = `<p>${questionIndex + 1} out of ${questions.length}</p>`;
     document.getElementById("progress").innerHTML = progress;
 
+    /*Show score*/
     let scoreBoard = `<p>Score: ${score} out of ${questions.length}</p>`;
     document.getElementById("score").innerHTML = scoreBoard;
+
 }
+    
 
 
+/* Function to check answer*/
 /* Function to check answer*/
 function checkAnswer() {
     /* Finding checked button */
@@ -139,7 +149,7 @@ function checkAnswer() {
     }
 
     /* Get the number of user's answer */
-    const userAnswer = parseInt(checkedButton.value);
+    const userAnswer = checkedButton.value;
 
     /* Check answer and increment score */
     if (userAnswer == questions[questionIndex].correct) {
@@ -158,6 +168,7 @@ function checkAnswer() {
 }
 
 
+/* Function to show results*/
 /* Function to show results*/
 function showResult() {
     document.getElementById("progress").classList.add("hidden");
@@ -197,10 +208,31 @@ function showResult() {
 
     let correctAnswer = document.getElementById("correct-answers");
     document.querySelector(".check").onclick = function () {
+        /* Hide unneeded sections and showing scores */
         quiz.classList.add("hidden");
         correctAnswer.classList.remove("hidden");
+
+        /*Showing all previous scores */
+        const lastScore = localStorage.getItem("latestScore") || [];
+
+        const scoreDetail = lastScore.split(',');
+
+        scoreDetail.push(score);
+
+        localStorage.setItem("latestScore", scoreDetail);
+
+        let userScoreTemplate = `<h2>This Round's Score: ${score}</h2>`;
+
+        scoreDetail.map((items, index) => {
+            userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`
+        });
+
+        let userScoreBoard = document.getElementById("user-score");
+
+        userScoreBoard.innerHTML = userScoreTemplate;
     };
 
+    /*Reloads the page when "Play again" button is clicked */
     let playAgain = document.querySelector(".play-again");
     playAgain.onclick = function () {
         window.location.reload();
