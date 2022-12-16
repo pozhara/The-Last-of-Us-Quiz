@@ -220,7 +220,7 @@ function showResult() {
         let userScoreTemplate = `<h2>This Round's Score: ${score}</h2>`;
 
         scoreDetail.map((items, index) => {
-            userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`
+            userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`;
         });
 
         let userScoreBoard = document.querySelector(".user-score");
