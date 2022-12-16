@@ -172,7 +172,7 @@ function showResult() {
     const resultTemplate = `<h2 class="title">%title%</h2>
 <h3 class="summary">%message%</h3>
 <p class="result">%result%</p>
-<button class="check">Show Answers</button>`;
+<button class="check">Scoreboard</button>`;
 
     let title;
     let message;
