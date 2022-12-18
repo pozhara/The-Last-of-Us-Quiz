@@ -25,8 +25,8 @@ Includes a message of people's performance, how many question they answered corr
 ![Image of result page](assets/images/result.jpg)
 
 ## Scoreboard
-Includes all scores, last round's score at the top and a button to play again that refreshes the page.
-![Image of correct answers page](assets/images/scoreboard.jpg)
+Includes all scores and a button to play again that refreshes the page.
+![Image of scoreboard page](assets/images/scoreboard.jpg)
 
 # Testing
 The site looks good on different screens. Image isn't distorted. Javascript code works as expected to make the quiz playable and responsive.
@@ -56,6 +56,25 @@ I clicked scoreboard button and saw all my previous attempts as well as the most
 I clicked play again button and the page refreshed to the page with start button and an explanation.
 
 I resized the page to check responsiveness and all elements were adjusted accordingly.
+
+# Bugs
+
+I had a problem with shuffling answer. Tried using Math.random() and googling but still couldn't figure out how to do it. At the end I had to ask on Stack Overflow and got the answer.
+
+Using local storage was challenging for me. Most YouTube videos only showed the basics so I had to go deeper to find a video where a person actually shows how to implement it to a webpage.
+
+In the earlier version of my webpage it had a "This round's score:" on top of the scoreboard page but when I added this code:
+
+```
+scoreDetail.map((items, index) => {
+            userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`;
+            if (items==""){
+                userScoreTemplate="";
+            };
+        });
+```
+
+Specifically the if fucntion, the sentence stopped appearing.
 
 # Deployment
 

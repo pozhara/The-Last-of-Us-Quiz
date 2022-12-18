@@ -217,7 +217,7 @@ function showResult() {
 
         localStorage.setItem("latestScore", scoreDetail);
 
-        let userScoreTemplate = `<h2>This Round's Score: ${score}</h2>`;
+        let userScoreTemplate="";
 
         scoreDetail.map((items, index) => {
             userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`;
