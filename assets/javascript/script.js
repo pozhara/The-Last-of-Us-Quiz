@@ -221,6 +221,9 @@ function showResult() {
 
         scoreDetail.map((items, index) => {
             userScoreTemplate += `<h3>Score ${index}: ${items}</h3>`;
+            if (items==""){
+                userScoreTemplate="";
+            };
         });
 
         let userScoreBoard = document.querySelector(".user-score");
