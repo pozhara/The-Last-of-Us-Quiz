@@ -74,7 +74,7 @@ scoreDetail.map((items, index) => {
         });
 ```
 
-Specifically the if fucntion, the sentence stopped appearing.
+Specifically the if fucntion, the sentence stopped appearing. The reason for adding the if function is because when the user took the quiz once, the scoreboard showed "Score 0: " and then "Score 1: *actual score*".
 
 # Deployment
 
